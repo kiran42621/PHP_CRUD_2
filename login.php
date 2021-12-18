@@ -1,3 +1,4 @@
+<?php require 'dbConfig/config.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
 </head>
 <body>
     <div style="width:40%;border:1px solid black;padding-bottom:10px">
+    <form action="login.php" method="POST">
         <center>
             <h2>Login</h2>
         
@@ -22,8 +24,9 @@
             </tr>
         </table>
         <p>Don't have account? <a href="signup.php">Sign Up Here</a></p>
-        <input type="submit" value="Login">
+        <input type="submit" value="Login" name="Login">
         </center>
+        </form>
     </div>
 </body>
 </html>
@@ -44,7 +47,7 @@
         while ($row = mysqli_fetch_array($query_solutions)) {
           $_SESSION['user_id'] = $row['ID'];
         }
-        echo "<script>window.location.href = 'User/Home.php'</script>";
+        echo "<script>window.location.href = 'home.php'</script>";
       }
       else {
         echo "<script>alert('Check Username and password !')</script>";
