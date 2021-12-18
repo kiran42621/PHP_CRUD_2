@@ -27,3 +27,28 @@
     </div>
 </body>
 </html>
+<?php
+  if (isset($_POST['Login'])) {
+    $username = $_POST['email'];
+    $password = $_POST['password'];
+
+    if ($username == "Admin" && $password == "Admin@123#") {
+      echo "<script>window.location.href = 'Admin/Home.php'</script>";
+    }
+    else {
+      $query = "select * from users where Email = '$username' AND Password = '$password'";
+      $query_solution = mysqli_query($con, $query);
+      $query_solutions = mysqli_query($con, $query);
+      if (mysqli_fetch_array($query_solution) > 0) {
+        $_SESSION['username'] = $username;
+        while ($row = mysqli_fetch_array($query_solutions)) {
+          $_SESSION['user_id'] = $row['ID'];
+        }
+        echo "<script>window.location.href = 'User/Home.php'</script>";
+      }
+      else {
+        echo "<script>alert('Check Username and password !')</script>";
+      }
+    }
+  }
+ ?>
